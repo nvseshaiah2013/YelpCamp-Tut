@@ -1,0 +1,38 @@
+.formbox
+{
+    width:60%;
+    margin:30px auto;
+}
+h1,h2,h3,h4,h5,h6
+{
+    font-weight:200;
+    text-align: center;
+}
+
+.lgBox
+{
+    border-radius: 0.25rem;
+    border:2px solid #c0e076;
+    padding:0.5rem;
+    width:50%;
+}
+
+#hea
+{
+    font-weight:400;
+    /* text-decoration: underline; */
+    /* text-align: center !important; */
+    font-size:2.6rem;
+    line-height: 1.5rem;
+    padding-left:25px;
+}
+.wi
+{
+    max-width: 100%;
+    height:auto;
+}
+
+.float-right
+{
+    float:right;
+}

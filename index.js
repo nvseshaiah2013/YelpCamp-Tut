@@ -1,8 +1,15 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.use('/', express.static(__dirname + '/www')); // redirect root
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
  var campgrounds = [{
          name: "Patnitop",
@@ -10,7 +17,7 @@ app.set("view engine", "ejs");
      },
      {
          name: "Nathatop",
-            image: "http://forum.treasurewars.net/data/avatars/l/29/29402.jpg?1462773599"
+         image: "http://wallpoper.com/images/00/37/61/87/agent-orangehere_00376187_thumb.png"
      },
      {
          name: "Dalhousie",
