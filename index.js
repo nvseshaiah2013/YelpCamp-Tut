@@ -1,6 +1,11 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+//connecting to yelpcamp db
+
+mongoose.connect('mongodb://localhost/yelp_camp',{useNewUrlParser:true});
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -11,59 +16,28 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); /
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
- var campgrounds = [{
-         name: "Patnitop",
-         image: "http://gamingtrend.com/wp-content/uploads/2011/06/new-assassins-creed-revelations-details-revealed-240x180.jpg"
-     },
-     {
-         name: "Nathatop",
-         image: "http://wallpoper.com/images/00/37/61/87/agent-orangehere_00376187_thumb.png"
-     },
-     {
-         name: "Dalhousie",
-         image: "http://wallpoper.com/images/00/37/61/87/agent-orangehere_00376187_thumb.png"
-     },
-     {
-         name: "Patnitop",
-         image: "http://gamingtrend.com/wp-content/uploads/2011/06/new-assassins-creed-revelations-details-revealed-240x180.jpg"
-     }, {
-         name: "Nathatop",
-         image: "http://forum.treasurewars.net/data/avatars/l/29/29402.jpg?1462773599"
-     }, {
-         name: "Dalhousie",
-         image: "http://wallpoper.com/images/00/37/61/87/agent-orangehere_00376187_thumb.png"
-     },
-     {
-         name: "Patnitop",
-         image: "http://gamingtrend.com/wp-content/uploads/2011/06/new-assassins-creed-revelations-details-revealed-240x180.jpg"
-     }, {
-         name: "Nathatop",
-         image: "http://forum.treasurewars.net/data/avatars/l/29/29402.jpg?1462773599"
-     }, {
-         name: "Dalhousie",
-         image: "http://wallpoper.com/images/00/37/61/87/agent-orangehere_00376187_thumb.png"
-     },
-     {
-         name: "Patnitop",
-         image: "http://gamingtrend.com/wp-content/uploads/2011/06/new-assassins-creed-revelations-details-revealed-240x180.jpg"
-     }, {
-         name: "Nathatop",
-         image: "http://forum.treasurewars.net/data/avatars/l/29/29402.jpg?1462773599"
-     }, {
-         name: "Dalhousie",
-         image: "http://wallpoper.com/images/00/37/61/87/agent-orangehere_00376187_thumb.png"
-     }
 
- ];
+//Setting Up Schema for Campgrounds
+
+var campSchema = new mongoose.Schema({name:String,image:String});
+//Creating Model for Schema
+var camps = new mongoose.model("Camp",campSchema);
 
 app.get("/", function (req, res) {
     res.render("landing");
 });
 
 app.get("/campgrounds", function (req, res) {
-   
-    res.render("campgrounds", {
-        campgrounds: campgrounds
+    camps.find({},function(err,allCamps){
+            if(err)
+            {
+                console.log("error caught!");
+                console.log(err);
+            }
+            else
+            {
+                res.render("campgrounds",{campgrounds:allCamps});
+            }
     });
 });
 
@@ -76,7 +50,19 @@ app.post("/campgrounds", function (req, res) {
     var name = req.body.name;
     var image = req.body.image;
     var newCampground = {name:name,image:image};
-    campgrounds.push(newCampground);
+    //Adding campground to DB
+    camps.create(newCampground,function(err,camp){
+        if(err)
+        {
+            console.log("Error Occured!");
+            console.log(err);
+        }
+        else
+        {
+            console.log("added Campground");
+            console.log(camp);
+        }
+    });
     res.redirect("/campgrounds");
 });
 

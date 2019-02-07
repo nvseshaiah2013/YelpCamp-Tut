@@ -1,6 +1,6 @@
 .formbox
 {
-    width:60%;
+    max-width:70%;
     margin:30px auto;
 }
 h1,h2,h3,h4,h5,h6
@@ -14,7 +14,7 @@ h1,h2,h3,h4,h5,h6
     border-radius: 0.25rem;
     border:2px solid #c0e076;
     padding:0.5rem;
-    width:50%;
+    max-width: 50%;
 }
 
 #hea

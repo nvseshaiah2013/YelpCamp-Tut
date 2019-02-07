@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index.js"
+    "start": "node index.js"
   },
   "author": "SES",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
+    "mongoose": "^5.4.10",
     "popper.js": "^1.14.6"
   }
 }
