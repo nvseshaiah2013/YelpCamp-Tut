@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+
+<header class="jumbotron mx-0" ><p class="display-4 offset-1">Welcome to YelpCamp</p>
+    <p class="lead offset-1">Lets explore the world. Since the world is so small, exploring shouldn't be very tough. Our campgrounds are unique enough
+        to mesmerise any kind of audience with our unique way of hospitality. Give us a chance to build your memory lanes with unforgettable experiences.
+    </p>
+<p><a class="btn btn-danger btn-lg offset-1" href="/campgrounds/new">Add a New Campgrounds</a></p>
+</header>
+
+<br>
+<main>
+    <div class="row my-4 offset-5">
+    <p  id="hea">
+                Camp Gallery
+    </p>
+</div>
+<div class="row gallery">
+   
+<% campgrounds.forEach(function(campground){ %>
+        <div class="col-md-3 col-sm-6 my-2">
+            <div class="thumbnail">
+        <img class ="wi" src="<%= campground.image %>" alt="random image">
+        
+        <div class="caption">
+         <%= campground.name %>
+        </div>
+        <p> 
+            <a href="/campgrounds/<%= campground._id %>" class="btn btn-danger">More Info</a>
+        </p>
+        </div>
+            </div>
+<% }); %>
+    
+</div>
+</main>
+
+<% include ../partials/footer %>

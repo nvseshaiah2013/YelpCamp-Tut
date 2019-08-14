@@ -3,11 +3,7 @@
     max-width:70%;
     margin:30px auto;
 }
-h1,h2,h3,h4,h5,h6
-{
-    font-weight:200;
-    text-align: center;
-}
+
 
 .lgBox
 {
@@ -40,8 +36,7 @@ h1,h2,h3,h4,h5,h6
 .thumbnail
 {
     border-radius:10px;
-    border:1px solid grey;
-    padding:4px;
+    border:1px solid rgb(207, 207, 207);
 }
 .gallery
 {
@@ -49,4 +44,10 @@ h1,h2,h3,h4,h5,h6
     flex-wrap:wrap;
     width:80%;
     margin-left:10% !important;
+}
+
+
+img
+{
+    border-radius: 10px 10px 0px 0px;
 }
