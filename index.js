@@ -190,6 +190,7 @@ app.post('/login',passport.authenticate("local",{
 //Logout Route
 
 app.get('/logout',function(req,res){
+    console.log(req.user);
     req.logout();
     res.redirect('/campgrounds');
 });
